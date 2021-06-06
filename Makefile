@@ -1,5 +1,5 @@
 
-subdirs := moda
+subdirs := bina
 
 .PHONY: $(subdirs)
 
