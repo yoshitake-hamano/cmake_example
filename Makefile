@@ -1,5 +1,5 @@
 
-subdirs := bina
+subdirs := bina liba
 
 .PHONY: $(subdirs)
 
