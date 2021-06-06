@@ -1,5 +1,8 @@
 .PHONY: all
-all:
+all: cmake
+
+.PHONY: cmake
+cmake:
 	mkdir -p build
 	cd build; cmake build ..
 
