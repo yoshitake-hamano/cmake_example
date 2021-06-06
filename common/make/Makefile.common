@@ -1,0 +1,9 @@
+.PHONY: all
+all:
+	mkdir -p build
+	cd build; cmake build ..
+
+.POHONY: clean
+clean:
+	$(RM) -r build
+

@@ -1,4 +1,2 @@
-.PHONY: all
-all:
-	mkdir -p build
-	cd build; cmake build ..
+include ../common/make/Makefile.common
+
