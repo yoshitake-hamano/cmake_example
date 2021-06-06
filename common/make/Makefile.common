@@ -5,7 +5,7 @@ all: cmake
 .PHONY: cmake
 cmake:
 	mkdir -p build
-	cd build; cmake build ..
+	cd build; cmake .. --graphviz=dep.dot --debug-output
 
 .POHONY: clean
 clean:
