@@ -6,6 +6,7 @@ all: cmake
 cmake:
 	mkdir -p build
 	cd build; cmake .. --graphviz=dep.dot --debug-output
+	cd build; dot -Tpng -odep.png dep.dot
 
 .POHONY: clean
 clean:
