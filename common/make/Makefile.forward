@@ -1,0 +1,6 @@
+.PHONY: $(SUBDIRS)
+all: $(SUBDIRS)
+clean: $(SUBDIRS)
+
+$(subdirs):
+	make -C $@ $(MAKECMDGOALS)
