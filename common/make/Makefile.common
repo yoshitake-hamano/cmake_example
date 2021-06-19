@@ -1,6 +1,6 @@
 .PHONY: all
 all: cmake
-	make -C build
+	cd build; cmake --build .
 
 .PHONY: cmake
 cmake:
