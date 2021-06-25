@@ -3,4 +3,5 @@ project(cmake_example CXX)
 
 include(common/cmake/user.cmake)
 
+add_subdirectory(liba)
 add_subdirectory(bina)
