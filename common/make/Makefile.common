@@ -1,9 +1,22 @@
 .PHONY: all
-all: cmake
+all: all-ninja
+
+.PHONY: all-ninja
+all-ninja: cmake-ninja
+	cd build; ninja
+
+.PHONY: cmake-ninja
+cmake-ninja:
+	mkdir -p build
+	cd build; cmake .. -GNinja --graphviz=dep.dot
+	cd build; dot -Tpng -odep.png dep.dot
+
+.PHONY: all-make
+all-make: cmake-make
 	cd build; make all
 
-.PHONY: cmake
-cmake:
+.PHONY: cmake-make
+cmake-make:
 	mkdir -p build
 	cd build; cmake .. --graphviz=dep.dot
 	cd build; dot -Tpng -odep.png dep.dot
