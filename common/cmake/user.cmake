@@ -8,4 +8,6 @@
 # show each command line as it is launched.
 # https://cmake.org/cmake/help/latest/variable/CMAKE_VERBOSE_MAKEFILE.html
 set(CMAKE_VERBOSE_MAKEFILE 1)
-message(STATUS "include user.cmake")
+message(STATUS "Include user.cmake")
+
+include(${CMAKE_CURRENT_LIST_DIR}/ccache.cmake)
