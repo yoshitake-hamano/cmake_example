@@ -1,11 +1,11 @@
 .PHONY: all
 all: cmake
-	cd build; cmake --build .
+	cd build; make all
 
 .PHONY: cmake
 cmake:
 	mkdir -p build
-	cd build; cmake .. --graphviz=dep.dot --debug-output
+	cd build; cmake .. --graphviz=dep.dot
 	cd build; dot -Tpng -odep.png dep.dot
 
 .POHONY: clean

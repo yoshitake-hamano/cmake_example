@@ -1,7 +1,8 @@
 #include <iostream>
+#include "prints.h"
 
 int main(int argc, char **argv)
 {
-    std::cout << "Hello World" << std::endl;
+    printHello();
     return 0;
 }
