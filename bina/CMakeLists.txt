@@ -15,3 +15,8 @@ endif()
 
 add_executable(bina ${SOURCES})
 target_link_libraries(bina liba)
+
+# $<TARGET_FILE:bina> is a generator expression
+add_custom_target(md5 ALL
+  COMMAND md5 $<TARGET_FILE:bina> > $<TARGET_FILE:bina>.md5
+  COMMENT "Building md5")
