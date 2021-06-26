@@ -11,3 +11,4 @@ set(CMAKE_VERBOSE_MAKEFILE 1)
 message(STATUS "Include user.cmake")
 
 include(${CMAKE_CURRENT_LIST_DIR}/ccache.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/distcc.cmake)
