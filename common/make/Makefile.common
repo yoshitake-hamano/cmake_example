@@ -1,27 +1,30 @@
+BUILD_DIR   := build
+DEP_FILE    := dep.dot
+
 .PHONY: all
 all: all-ninja
 
 .PHONY: all-ninja
 all-ninja: cmake-ninja
-	cd build; ninja
+	cd $(BUILD_DIR); ninja
 
 .PHONY: cmake-ninja
 cmake-ninja:
-	mkdir -p build
-	cd build; cmake .. -GNinja --graphviz=dep.dot
-	cd build; dot -Tpng -odep.png dep.dot
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR); cmake .. -GNinja --graphviz=$(DEP_FILE)
+	cd $(BUILD_DIR); for f in `ls -1 $(DEP_FILE)*`; do dot -Tpng -oimage_$${f}.png $${f}; done
 
 .PHONY: all-make
 all-make: cmake-make
-	cd build; make all
+	cd $(BUILD_DIR); make all
 
 .PHONY: cmake-make
 cmake-make:
-	mkdir -p build
-	cd build; cmake .. --graphviz=dep.dot
-	cd build; dot -Tpng -odep.png dep.dot
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR); cmake .. --graphviz=$(DEP_FILE)
+	cd $(BUILD_DIR); for f in `ls -1 $(DEP_FILE)*`; do dot -Tpng -oimage_$${f}.png $${f}; done
 
 .POHONY: clean
 clean:
-	$(RM) -r build
+	$(RM) -r $(BUILD_DIR)
 
