@@ -13,6 +13,11 @@ cmake-ninja:
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR); cmake .. -GNinja --graphviz=$(DEP_FILE)
 
+.PHONY: test-ninja
+test-ninja:
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR); ninja test
+
 .PHONY: all-make
 all-make: cmake-make
 	cd $(BUILD_DIR); make all
