@@ -2,7 +2,7 @@ BUILD_DIR   := build
 DEP_FILE    := dep.dot
 
 .PHONY: all
-all: all-ninja
+all: all-make
 
 .PHONY: all-ninja
 all-ninja: cmake-ninja
@@ -22,6 +22,11 @@ cmake-make:
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR); cmake .. --graphviz=$(DEP_FILE)
 
+.PHONY: test-make
+test-make:
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR); make test
+
 .POHONY: clean
 clean:
 	$(RM) -r $(BUILD_DIR)
@@ -29,4 +34,3 @@ clean:
 .PHONY: dep
 dep:
 	cd $(BUILD_DIR); for f in `ls -1 $(DEP_FILE)*`; do dot -Tpng -oimage_$${f}.png $${f}; done
-
