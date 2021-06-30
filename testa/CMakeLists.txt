@@ -3,7 +3,9 @@ project(testa CXX)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../common/cmake/common.cmake)
 
-if (NOT TARGET liba)
+if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
+# since cmake 3.21
+# if (${PROJECT_IS_TOP_LEVEL})
   add_subdirectory(../liba liba)
 endif()
 
