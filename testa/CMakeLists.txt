@@ -12,10 +12,9 @@ endif()
 aux_source_directory(src SOURCES)
 #file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/test_*.c" "src/test_*.cpp") # remove RELATIVE
 
-message(STATUS "Register ${SOURCE}")
 foreach(SOURCE ${SOURCES})
   get_filename_component(NAME_WE ${SOURCE} NAME_WE)
-  message(STATUS "Register ${NAME_WE}")
+  message(STATUS "Register ${NAME_WE} test")
   add_executable(${NAME_WE} ${SOURCE})
   target_include_directories(${NAME_WE} PRIVATE ${CppUTest_INCLUDE_DIRS})
   target_link_libraries(${NAME_WE} liba)
