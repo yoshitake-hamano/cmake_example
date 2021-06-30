@@ -9,7 +9,8 @@ if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
   add_subdirectory(../liba liba)
 endif()
 
-file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/test_*.c" "src/test_*.cpp") # remove RELATIVE
+aux_source_directory(src SOURCES)
+#file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/test_*.c" "src/test_*.cpp") # remove RELATIVE
 
 message(STATUS "Register ${SOURCE}")
 foreach(SOURCE ${SOURCES})
