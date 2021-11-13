@@ -2,40 +2,44 @@ BUILD_DIR   := build
 DEP_FILE    := dep.dot
 
 .PHONY: all
-all: all-make
+all: all-make ## Make all(make)
 
 .PHONY: all-ninja
-all-ninja: cmake-ninja
+all-ninja: cmake-ninja ## Make all(ninja)
 	cd $(BUILD_DIR); ninja
 
 .PHONY: cmake-ninja
-cmake-ninja:
+cmake-ninja: ## Execute cmake(ninja)
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR); cmake .. -GNinja --graphviz=$(DEP_FILE)
 
 .PHONY: test-ninja
-test-ninja:
+test-ninja: ## Test(ninja)
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR); ninja test
 
 .PHONY: all-make
-all-make: cmake-make
+all-make: cmake-make ## Make all(make)
 	cd $(BUILD_DIR); make all
 
 .PHONY: cmake-make
-cmake-make:
+cmake-make: ## Execute cmake(make)
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR); cmake .. --graphviz=$(DEP_FILE)
 
 .PHONY: test-make
-test-make:
+test-make: ## Test(make)
 	mkdir -p $(BUILD_DIR)
 	cd $(BUILD_DIR); make test
 
 .POHONY: clean
-clean:
+clean: ## Clean temporary files
 	$(RM) -r $(BUILD_DIR)
 
 .PHONY: dep
-dep:
+dep: ## Create file dependency
 	cd $(BUILD_DIR); for f in `ls -1 $(DEP_FILE)*`; do dot -Tpng -oimage_$${f}.png $${f}; done
+
+.PHONY: help
+help: ## Display this help
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = "(:)|( *## *)"}; {printf "\033[36m%-20s\033[0m %s\n", $$2, $$4}'
