@@ -1,44 +1,33 @@
 BUILD_DIR   := build
 DEP_FILE    := dep.dot
+# GENERATOR   := make
+GENERATOR   := ninja
 
 .PHONY: all
-all: all-make ## Make all(make)
+all: cmake-make ## Execute all target
+	cmake --build $(BUILD_DIR) --target all
 
-.PHONY: all-ninja
-all-ninja: cmake-ninja ## Make all(ninja)
-	cd $(BUILD_DIR); ninja
-
-.PHONY: cmake-ninja
-cmake-ninja: ## Execute cmake(ninja)
-	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR); cmake .. -GNinja --graphviz=$(DEP_FILE)
-
-.PHONY: test-ninja
-test-ninja: ## Test(ninja)
-	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR); ninja test
-
-.PHONY: all-make
-all-make: cmake-make ## Make all(make)
-	cd $(BUILD_DIR); make all
-
-.PHONY: cmake-make
-cmake-make: ## Execute cmake(make)
-	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR); cmake .. --graphviz=$(DEP_FILE)
-
-.PHONY: test-make
-test-make: ## Test(make)
-	mkdir -p $(BUILD_DIR)
-	cd $(BUILD_DIR); make test
+.PHONY: test
+test: all ## Execute test target
+	cmake --build $(BUILD_DIR) --target test
 
 .POHONY: clean
 clean: ## Clean temporary files
 	$(RM) -r $(BUILD_DIR)
 
 .PHONY: dep
-dep: ## Create file dependency
+dep: all ## Create file dependency
 	cd $(BUILD_DIR); for f in `ls -1 $(DEP_FILE)*`; do dot -Tpng -oimage_$${f}.png $${f}; done
+
+.PHONY: cmake-ninja
+cmake-ninja: ## Create build dir using ninja generator
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR); cmake .. -GNinja --graphviz=$(DEP_FILE)
+
+.PHONY: cmake-make
+cmake-make: ## Create build dir using make generator
+	mkdir -p $(BUILD_DIR)
+	cd $(BUILD_DIR); cmake .. --graphviz=$(DEP_FILE)
 
 .PHONY: help
 help: ## Display this help
