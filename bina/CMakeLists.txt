@@ -18,6 +18,8 @@ add_subdirectory(../liba liba)
 file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/*.c" "src/*.cpp") # remove RELATIVE
 
 add_executable(bina ${SOURCES})
+my_prepare_project(bina)
+
 target_link_libraries(bina liba)
 
 # $<TARGET_FILE:bina> is a generator expression

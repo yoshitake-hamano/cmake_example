@@ -3,12 +3,11 @@ include_guard(GLOBAL) # cmake 3.10 to avoid recurcive add_subdirectory
 project(liba CXX)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../common/cmake/common.cmake)
+add_subdirectory(../libaa libaa)
 
 configure_file(src/defs.h.in src/defs.h @ONLY)
 add_library(liba STATIC
             src/prints.cpp
             src/os/print_${CONFIG_OS}.cpp)
-target_include_directories(liba PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# for defs.h
-target_include_directories(liba PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src)
+my_prepare_project(liba)
