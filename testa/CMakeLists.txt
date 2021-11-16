@@ -1,13 +1,10 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
+include_guard(GLOBAL) # cmake 3.10 to avoid recurcive add_subdirectory
 project(testa CXX)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../common/cmake/common.cmake)
 
-if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_SOURCE_DIR})
-# since cmake 3.21
-# if (${PROJECT_IS_TOP_LEVEL})
-  add_subdirectory(../liba liba)
-endif()
+add_subdirectory(../liba liba)
 
 aux_source_directory(src SOURCES)
 #file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/test_*.c" "src/test_*.cpp") # remove RELATIVE
@@ -19,5 +16,5 @@ foreach(SOURCE ${SOURCES})
   target_include_directories(${NAME_WE} PRIVATE ${CppUTest_INCLUDE_DIRS})
   target_link_libraries(${NAME_WE} liba)
   target_link_libraries(${NAME_WE} CppUTest)
-  add_test(NAME ${NAME_WE} COMMAND ${NAME_WE})
+  add_test(NAME ${NAME_WE} COMMAND ${NAME_WE} -vv)
 endforeach()

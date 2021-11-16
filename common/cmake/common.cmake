@@ -1,3 +1,4 @@
+cmake_minimum_required(VERSION 3.10)
 include_guard(GLOBAL) # since 3.10
 # invoke include(common.cmake), after project()
 #
