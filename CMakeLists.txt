@@ -6,4 +6,4 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/common/cmake/common.cmake)
 
 add_subdirectory(liba)
 add_subdirectory(bina)
-add_subdirectory(testa)
+add_subdirectory(liba/test)
