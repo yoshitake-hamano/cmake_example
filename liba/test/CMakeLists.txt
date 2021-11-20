@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 include_guard(GLOBAL) # cmake 3.10 to avoid recurcive add_subdirectory
-project(testa CXX)
+project(liba::test CXX)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../common/cmake/common.cmake)
 
