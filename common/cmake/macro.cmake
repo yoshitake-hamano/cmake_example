@@ -12,12 +12,21 @@ macro(my_prepare_test_project)
   foreach(SOURCE ${SOURCES})
     get_filename_component(NAME_WE ${SOURCE} NAME_WE)
     message(STATUS "Register ${NAME_WE} test")
-    add_executable(${NAME_WE} ${SOURCE})
+    add_executable(${NAME_WE} EXCLUDE_FROM_ALL ${SOURCE})
     my_prepare_project(${NAME_WE})
     foreach(arg ${ARGN})
       target_link_libraries(${NAME_WE} ${arg})
     endforeach()
     target_link_libraries(${NAME_WE} CppUTest)
-    add_test(NAME ${NAME_WE} COMMAND ${NAME_WE} -v)
+
+    # add_test(NAME ${NAME_WE} COMMAND ${NAME_WE} -vv)
+    #
+    # stakoverflow > CMake & CTest : make test doesn't build tests
+    # https://stackoverflow.com/questions/733475/cmake-ctest-make-test-doesnt-build-tests
+    add_test(ctest_build_test_code
+             "${CMAKE_COMMAND}" --build ${CMAKE_BINARY_DIR} --target ${NAME_WE})
+    add_test(ctest_run_test_code ${NAME_WE})
+    set_tests_properties(ctest_run_test_code
+                         PROPERTIES DEPENDS ctest_build_test_code)
   endforeach()
 endmacro()
