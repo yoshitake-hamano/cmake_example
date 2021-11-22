@@ -1,8 +1,7 @@
-#include <iostream>
 #include "CppUTest/CommandLineTestRunner.h"
 #include "CppUTest/TestHarness.h"
 
-#include "prints.h"
+#include "liba/prints.h"
 
 TEST_GROUP(Prints)
 {
@@ -18,11 +17,6 @@ TEST_GROUP(Prints)
 TEST(Prints, printHello)
 {
     printHello();
-}
-
-TEST(Prints, printOs)
-{
-    printOs();
 }
 
 int main(int argc, char** argv)

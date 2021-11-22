@@ -15,7 +15,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../common/cmake/common.cmake)
 # endif()
 add_subdirectory(../liba liba)
 
-file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/*.c" "src/*.cpp") # remove RELATIVE
+file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/${PROJECT_NAME}/*.c" "src/${PROJECT_NAME}/*.cpp") # remove RELATIVE
 
 add_executable(bina ${SOURCES})
 my_prepare_project(bina)

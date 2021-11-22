@@ -6,9 +6,9 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../common/cmake/common.cmake)
 add_subdirectory(libaa)
 add_subdirectory(ut)
 
-configure_file(src/defs.h.in src/defs.h @ONLY)
+configure_file(src/liba/defs.h.in src/liba/defs.h @ONLY)
 add_library(liba STATIC
-            src/prints.cpp
-            src/os/print_${CONFIG_OS}.cpp)
+            src/liba/prints.cpp
+            src/liba/os/print_${CONFIG_OS}.cpp)
 
 my_prepare_project(liba)

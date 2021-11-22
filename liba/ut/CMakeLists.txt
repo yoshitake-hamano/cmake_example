@@ -6,4 +6,4 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../../common/cmake/common.cmake)
 
 add_subdirectory(.. liba)
 
-my_prepare_test_project(liba)
+my_prepare_test_project(liba liba)

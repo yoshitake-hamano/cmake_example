@@ -1,13 +1,13 @@
 
 macro(my_prepare_project name)
-  target_include_directories(${name} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+  target_include_directories(${name} PUBLIC  ${CMAKE_CURRENT_SOURCE_DIR}/include)
   target_include_directories(${name} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
   target_include_directories(${name} PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/src) # for configure_file(src/foo.h.in src/foo.h @ONLY)
 endmacro()
 
-macro(my_prepare_test_project)
-  aux_source_directory(src SOURCES)
-  #file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/test_*.c" "src/test_*.cpp") # remove RELATIVE
+macro(my_prepare_test_project name)
+  aux_source_directory(src/${name} SOURCES)
+  #file(GLOB_RECURSE SOURCES ${CMAKE_SOURCE_DIR} "src/${name}/test_*.c" "src/${name}/test_*.cpp") # remove RELATIVE
 
   foreach(SOURCE ${SOURCES})
     get_filename_component(NAME_WE ${SOURCE} NAME_WE)

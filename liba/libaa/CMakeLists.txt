@@ -5,6 +5,6 @@ project(libaa CXX)
 include(${CMAKE_CURRENT_SOURCE_DIR}/../../common/cmake/common.cmake)
 
 add_library(libaa STATIC
-            src/libaa.cpp)
+            src/libaa/libaa.cpp)
 my_prepare_project(libaa)
 
