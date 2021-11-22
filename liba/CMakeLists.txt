@@ -10,5 +10,6 @@ configure_file(src/liba/defs.h.in src/liba/defs.h @ONLY)
 add_library(liba STATIC
             src/liba/prints.cpp
             src/liba/os/print_${CONFIG_OS}.cpp)
+target_link_libraries(liba libaa)
 
 my_prepare_project(liba)
