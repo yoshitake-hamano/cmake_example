@@ -1,0 +1,9 @@
+@startuml
+
+[root] --> [bina]
+[root] --> [design]
+[bina] --> [liba]
+[liba] --> [libaa]
+[liba] -> [liba::ut]
+
+@enduml
